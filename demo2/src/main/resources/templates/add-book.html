@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="~{fragments :: head}"></head>
+
+<body>
+<div class="body">
+    <h1>Add Book</h1>
+
+    <div th:switch="${registrationSuccess}">
+        <div th:case="'Success'" class="alert alert-success">
+            <strong>Success!</strong> Book added successfully.
+        </div>
+        <div th:case="'Failed'" class="alert alert-danger">
+            <strong>Failure!</strong> Book addition failed. Please try again.
+        </div>
+    </div>
+
+    <form th:action="@{/add-book}" method="post" th:object="${book}" class="px-4">
+        <div class="mb-3 row">
+            <label for="title" class="col-sm-2 col-form-label">Title</label>
+            <div class="col-sm-6">
+                <input type="text" id="title" class="form-control" required name="title" th:field="*{title}">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="author" class="col-sm-2 col-form-label">Author</label>
+            <div class="col-sm-6">
+                <input type="text" id="author" class="form-control" required name="author" th:field="*{author}">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="price" class="col-sm-2 col-form-label">Price</label>
+            <div class="col-sm-6">
+                <input type="number" id="price" class="form-control" required name="price" th:field="*{price}">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="stock" class="col-sm-2 col-form-label">Stock</label>
+            <div class="col-sm-6">
+                <input type="number" id="stock" class="form-control" required name="stock" th:field="*{stock}">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="publishedDate" class="col-sm-2 col-form-label">Published Date</label>
+            <div class="col-sm-6">
+                <input type="date" id="publishedDate" class="form-control" required name="publishedDate" th:field="*{publicationDate}">
+            </div>
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-success">Add Book</button>
+        </div>
+    </form>
+</div>
+
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>
